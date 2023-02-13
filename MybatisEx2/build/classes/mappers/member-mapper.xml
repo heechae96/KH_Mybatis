@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<!-- type을 간단하게 쓸 수 있는 이유는 alias로 mybatis-config에서 지정 -->
+	<resultMap type="Member" id="memberResultMap">
+		<id property="memberId" column="MEMBER_ID" />
+		<result property="memberPw" column="MEMBER_PW" />
+		<result property="memberName" column="MEMBER_NAME" />
+		<result property="memberAge" column="MEMBER_AGE" />
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberPhone" column="MEMBER_PHONE" />
+		<result property="memberAddr" column="MEMBER_ADDR" />
+		<result property="memberGender" column="MEMBER_GENDER" />
+		<result property="memberHobby" column="MEMBER_HOBBY" />
+		<result property="memberDate" column="MEMBER_DATE" />
+	</resultMap>
+	<!-- resultMap이 반드시 필요 -->
+	<!-- memberResultMap에 사용하는것들은 parameterType생략가능 -->
+	<!-- parameterType을 간단하게 쓸 수 있는 이유는 alias로 mybatis-config에서 지정 -->
+	<select id="checkMemberLogin" parameterType="Member" resultMap="memberResultMap">
+		SELECT MEMBER_ID, MEMBER_NAME, MEMBER_PHONE, MEMBER_EMAIL FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId } AND MEMBER_PW = #{memberPw }
+	</select>
+	<!-- #{}은 getter랑 같은 역할 -->
+	<!-- $이랑 #은 다름. #은 ''가 자동으로 만들어지지만, $은 안된다 -->
+	<insert id="insertMember">
+		INSERT INTO MEMBER_TBL VALUES(#{memberId}, #{memberPw}, #{memberName}, #{memberAge}, #{memberEmail}, #{memberPhone}, #{memberAddr}, #{memberGender}, #{memberHobby}, DEFAULT)
+	</insert>
+</mapper>
