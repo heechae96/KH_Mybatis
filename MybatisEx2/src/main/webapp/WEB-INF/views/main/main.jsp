@@ -9,7 +9,7 @@
 #content {
 	display: flex;
 	justify-content: center;
-	margin-top: 50px;
+	margin-top: 150px;
 }
 </style>
 </head>

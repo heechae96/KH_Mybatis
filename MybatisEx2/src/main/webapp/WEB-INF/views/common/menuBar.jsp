@@ -17,12 +17,12 @@ h1 {
 	text-align: center;
 	vertical-align: middle;
 	font-size: 20px;
-	background-color: yellowgreen;
+	background-color: #60C6FE;
 	color: black;
 }
 
 .menu:hover {
-	background-color: green;
+	background-color: #568DE5;
 	cursor: pointer;
 }
 
@@ -55,7 +55,8 @@ a:hover {
 					<tr>
 						<td>아이디 :</td>
 						<td><input type="text" name="member-id"></td>
-						<td rowspan="2"><button style="height: 50px">로그인</button></td>
+						<td rowspan="2"><button style="height: 60px">로그인</button></td>
+						<td rowspan="2"><button type="button" onclick="goRegister()" style="height: 60px">회원가입</button></td>
 					</tr>
 					<tr>
 						<td>비밀번호 :</td>
@@ -77,11 +78,20 @@ a:hover {
 		</c:if>
 	</div>
 	<div>
-		<div class="menu" onclick="">HOME</div>
-		<div class="menu" onclick="">멤버목록</div>
+		<div class="menu" onclick="javascript:location.href='/'">HOME</div>
+		<div class="menu" onclick="moveMemberList()">멤버목록</div>
 		<div class="menu" onclick="">강좌목록</div>
 		<div class="menu" onclick="">게시판</div>
 		<div class="menu" onclick="">ETC</div>
 	</div>
+	<script type="text/javascript">
+		function moveMemberList() {
+			location.href = "/member/list.do";
+		}
+		
+		function goRegister() {
+			location.href = "/member/register.do";
+		}
+	</script>
 </body>
 </html>
