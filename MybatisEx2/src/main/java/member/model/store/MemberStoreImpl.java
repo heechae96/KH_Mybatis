@@ -29,7 +29,7 @@ public class MemberStoreImpl implements MemberStore {
 
 	@Override
 	public String generateNavi(SqlSession session, int currentPage) {
-		int recordTotalCnt = 56;
+		int recordTotalCnt = this.getTotalCnt(session);
 		int recordCntPerPage = 10;
 		int naviTotalCnt;
 		if (recordTotalCnt % recordCntPerPage != 0) {
@@ -44,10 +44,28 @@ public class MemberStoreImpl implements MemberStore {
 			endNavi = naviTotalCnt;
 		}
 		StringBuilder sb = new StringBuilder();
+		if (!(currentPage == 1)) {
+			sb.append("<a href = '/member/list.do?page=" + 1 + "'>처음 </a>");
+		}
+		if (currentPage != 1) {
+			sb.append("<a href = '/member/list.do?page=" + (currentPage - 1) + "'>< </a>");
+		}
 		for (int i = startNavi; i <= endNavi; i++) {
 			sb.append("<a href='/member/list.do?page=" + i + "'>" + i + " </a>");
 		}
+		if (currentPage != naviTotalCnt) {
+			sb.append("<a href = '/member/list.do?page=" + (currentPage + 1) + "'> ></a>");
+		}
+		if (!(currentPage == naviTotalCnt)) {
+			sb.append("<a href = '/member/list.do?page=" + naviTotalCnt + "'> 끝</a>");
+		}
 		return sb.toString();
+	}
+
+	@Override
+	public int getTotalCnt(SqlSession session) {
+		int totalcnt = session.selectOne("memberMapper.getTotalCnt");
+		return totalcnt;
 	}
 
 	@Override

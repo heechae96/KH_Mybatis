@@ -37,7 +37,25 @@ public interface MemberStore {
 	public List<Member> selectAllMembers(SqlSession session, Pagination pn);
 
 	/**
+	 * 페이지 네비게이터 생성 Store
+	 * 
+	 * @param session
+	 * @param currentPage
+	 * @return String
+	 */
+	public String generateNavi(SqlSession session, int currentPage);
+
+	/**
+	 * 전체 회원의 수 Store
+	 * 
+	 * @param session
+	 * @return int
+	 */
+	public int getTotalCnt(SqlSession session);
+	
+	/**
 	 * 회원 삭제 Store
+	 * 
 	 * @param session
 	 * @param memberId
 	 * @return int
@@ -46,6 +64,7 @@ public interface MemberStore {
 
 	/**
 	 * 멤버 수정 Store
+	 * 
 	 * @param session
 	 * @param memberId
 	 * @return Member
@@ -54,17 +73,11 @@ public interface MemberStore {
 
 	/**
 	 * 멤버 수정 Store
+	 * 
 	 * @param session
 	 * @param member
 	 * @return int
 	 */
 	public int modifyMember(SqlSession session, Member member);
-	
-	/**
-	 * 페이지 네비게이터 생성 Store
-	 * @param session
-	 * @param currentPage
-	 * @return String
-	 */
-	public String generateNavi(SqlSession session, int currentPage);
+
 }

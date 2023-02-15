@@ -37,6 +37,9 @@
 		MEMBER_TBL.* FROM
 		MEMBER_TBL) WHERE NUM BETWEEN #{start} AND #{end}
 	</select>
+	<select id="getTotalCnt" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER_TBL
+	</select>
 	<delete id="deleteMember">
 		DELETE FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId}
 	</delete>
