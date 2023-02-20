@@ -41,9 +41,10 @@ public interface MemberStore {
 	 * 
 	 * @param session
 	 * @param currentPage
+	 * @param recordCntPerPage
 	 * @return String
 	 */
-	public String generateNavi(SqlSession session, int currentPage);
+	public String generateNavi(SqlSession session, int currentPage, int recordCntPerPage);
 
 	/**
 	 * 전체 회원의 수 Store

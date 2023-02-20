@@ -37,11 +37,12 @@ public class MemberListController extends HttpServlet {
 			throws ServletException, IOException {
 		MemberService mService = new MemberServiceImpl();
 		int currentPage = 1;
+		int recordCountPerPage = 10;
 		if (request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
 		try {
-			PageData pd = mService.selectAllMembers(currentPage);
+			PageData pd = mService.selectAllMembers(currentPage, recordCountPerPage);
 			List<Member> mList = pd.getMemberList();
 			String pageNavi = pd.getPageNavigator();
 			request.setAttribute("mList", mList);

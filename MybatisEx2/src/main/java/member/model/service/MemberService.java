@@ -1,7 +1,5 @@
 package member.model.service;
 
-import java.util.List;
-
 import member.model.vo.Member;
 import member.model.vo.PageData;
 
@@ -27,9 +25,10 @@ public interface MemberService {
 	 * 전체 회원 목록 조회 Service
 	 * 
 	 * @param currentPage
+	 * @param @param recordCountPerPage
 	 * @return PageData
 	 */
-	public PageData selectAllMembers(int currentPage);
+	public PageData selectAllMembers(int currentPage, int recordCountPerPage);
 
 	/**
 	 * 멤버 삭제 Service

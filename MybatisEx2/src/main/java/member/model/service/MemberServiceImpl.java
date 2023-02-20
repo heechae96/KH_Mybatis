@@ -37,14 +37,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public PageData selectAllMembers(int currentPage) {
+	public PageData selectAllMembers(int currentPage, int recordCountPerPage) {
 		SqlSession session = SqlSessionTemplate.getSqlSession();
-		int recordCountPerPage = 10;
 		int start = recordCountPerPage * currentPage - (recordCountPerPage - 1);
 		int end = currentPage * recordCountPerPage;
 		Pagination pn = new Pagination(start, end);
 		List<Member> mList = mStore.selectAllMembers(session, pn);
-		String navigator = mStore.generateNavi(session, currentPage);
+		String navigator = mStore.generateNavi(session, currentPage, recordCountPerPage);
 		PageData pd = new PageData(mList, navigator);
 		return pd;
 	}

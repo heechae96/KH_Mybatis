@@ -28,9 +28,8 @@ public class MemberStoreImpl implements MemberStore {
 	}
 
 	@Override
-	public String generateNavi(SqlSession session, int currentPage) {
+	public String generateNavi(SqlSession session, int currentPage, int recordCntPerPage) {
 		int recordTotalCnt = this.getTotalCnt(session);
-		int recordCntPerPage = 10;
 		int naviTotalCnt;
 		if (recordTotalCnt % recordCntPerPage != 0) {
 			naviTotalCnt = recordTotalCnt / recordCntPerPage + 1;
@@ -51,7 +50,13 @@ public class MemberStoreImpl implements MemberStore {
 			sb.append("<a href = '/member/list.do?page=" + (currentPage - 1) + "'>< </a>");
 		}
 		for (int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='/member/list.do?page=" + i + "'>" + i + " </a>");
+			if (currentPage == i) {
+				sb.append("<a style='color: blue; font-size: large' " 
+						+ "href='/member/list.do?page=" + i + "'>" + i
+						+ " </a>");
+			} else {
+				sb.append("<a href='/member/list.do?page=" + i + "'>" + i + " </a>");
+			}
 		}
 		if (currentPage != naviTotalCnt) {
 			sb.append("<a href = '/member/list.do?page=" + (currentPage + 1) + "'> ></a>");
